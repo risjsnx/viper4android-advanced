@@ -21,8 +21,9 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
-          distribution: 'zulu'
+          distribution: 'termurin'
           java-version: '17'
+          cache: gradle
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
