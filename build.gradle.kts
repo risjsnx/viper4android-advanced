@@ -1,6 +1,7 @@
 plugins {
+    // id("org.jetbrains.kotlin.android") apply false
     id("com.android.application") apply false
-    id("com.android.library") apply false
+    // id("com.android.library") version "8.12.0" apply false
     kotlin("android") apply false
     alias(libs.plugins.compose.compiler) apply false
     alias(libs.plugins.detekt)
@@ -17,6 +18,17 @@ allprojects {
     version = if (USE_SNAPSHOT.toBoolean()) "$VERSION-SNAPSHOT" else VERSION
 }
 
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("com.android.tools.build:gradle:8.12.0")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.10")
+    }
+}
+
 val detektFormatting = libs.detekt.formatting
 
 subprojects {
@@ -30,19 +42,5 @@ subprojects {
 
     dependencies {
         detektPlugins(detektFormatting)
-    }
-}
-
-val NEXUS_USERNAME: String? by project
-val NEXUS_PASSWORD: String? by project
-
-nexusPublishing {
-    repositories {
-        sonatype {
-            nexusUrl.set(uri("https://ossrh-staging-api.central.sonatype.com/service/local/"))
-            snapshotRepositoryUrl.set(uri("https://central.sonatype.com/repository/maven-snapshots/"))
-            username.set(NEXUS_USERNAME)
-            password.set(NEXUS_PASSWORD)
-        }
     }
 }

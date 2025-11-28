@@ -1,5 +1,6 @@
-package com.ncorti.kotlin.template.app
+package com.risjsnx.v4aadvanced
 
+import com.risjsnx.v4aadvanced.ui.V4AControlScreen
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -15,7 +16,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(V4AControlScreen)
 
         binding.buttonCompute.setOnClickListener {
             val message = if (binding.editTextFactorial.text.isNotEmpty()) {

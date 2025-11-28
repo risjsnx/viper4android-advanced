@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("com.android.application")
+    // id("org.jetbrains.kotlin.android")
     kotlin("android")
 }
 
@@ -23,7 +24,12 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     buildFeatures {
+        compose = true
         viewBinding = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.0"
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -66,6 +72,16 @@ tasks.withType<KotlinCompile>().configureEach {
 }
 
 dependencies {
+    val composeBom = platform("androidx.compose:compose-bom:2024.04.01")
+    implementation(composeBom)
+
+    implementation("androidx.activity:activity-compose:1.9.0")
+    implementation("androidx.compose.material3:material3")
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.ui:ui-tooling-preview")
+
+    debugImplementation("androidx.compose.ui:ui-tooling")
+
     implementation(projects.libraryAndroid)
     implementation(projects.libraryCompose)
     implementation(projects.libraryKotlin)

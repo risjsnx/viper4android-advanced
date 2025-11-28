@@ -13,7 +13,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = ("kotlin-android-template")
+rootProject.name = ("ViPER4Android-AdVanced")
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
